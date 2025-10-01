@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Join or Create Room</title>
+    <link rel="stylesheet" href="room.css" />
+  </head>
+  <body>
+    
+        <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;margin-top:5rem;">
+      <button id="createBtn" type="button">Create Room</button>
+      <input id="roomInput" placeholder="Enter 5-digit code" maxlength="5" />
+      <button id="joinBtn" type="button">Join Room</button>
+    </div>
+
+    
+    
+    <script>
+      function randomCode() {
+        return Math.floor(10000 + Math.random() * 90000).toString();
+      }
+
+      document.getElementById("createBtn").onclick = () => {
+        const code = randomCode();
+        window.location.href = `/chat?room=${code}`;
+      };
+
+      document.getElementById("joinBtn").onclick = () => {
+        const code = document.getElementById("roomInput").value;
+        if (code.length === 5) {
+          window.location.href = `/chat?room=${code}`;
+        } else {
+          alert("Enter a valid 5-digit code");
+        }
+      };
+    </script>
+  </body>
+</html>
